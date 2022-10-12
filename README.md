@@ -23,7 +23,7 @@ client/
 
 ## Prerequisites
 - [MongoDB](https://gist.github.com/nrollr/9f523ae17ecdbb50311980503409aeb3)
-- [Node](https://nodejs.org/en/download/) ^10.0.0
+- [Node](https://nodejs.org/en/download/) ^v16.17.1
 - [npm](https://nodejs.org/en/download/package-manager/)
 
 notice, you need client and server runs concurrently in different terminal session, in order to make them talk to each other
