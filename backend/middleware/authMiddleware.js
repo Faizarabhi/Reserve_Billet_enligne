@@ -21,5 +21,5 @@ if(!token){
     res.status(401)
     throw new Error('No authorize, no token')
 }
-})
+}) 
 module.exports = {protect}

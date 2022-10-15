@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const goalSchema = mongoose.Schema({
+const adminSchema = mongoose.Schema({
     User :{
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -14,4 +14,4 @@ const goalSchema = mongoose.Schema({
 },{
     timestamps: true
 })
-module.exports = mongoose.model('Goal', goalSchema)
+module.exports = mongoose.model('Admin', adminSchema)
