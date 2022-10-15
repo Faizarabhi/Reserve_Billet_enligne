@@ -2,7 +2,7 @@
   "name": "reserve_billet_enligne",
   "version": "1.0.0",
   "description": "Supratours filiale du groupe ONCF qui assure des continuations par autocars pour les villes non desservies par le train a besoin de mettre en place un système informatique en créant une base de données pour la gestion de réservation des clients. <h1 align=\"center\"> 🌐 MERN Stack </h1> <p align=\"center\"> MongoDB, Expressjs, React/ Nodejs </p>",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js"
@@ -18,13 +18,9 @@
   },
   "homepage": "https://github.com/Faizarabhi/Reserve_Billet_enligne#readme",
   "dependencies": {
-    "bcrypt": "^5.1.0",
-    "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "express-async-handler": "^1.2.0",
-    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.6.5"
   },
   "devDependencies": {
