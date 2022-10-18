@@ -1,6 +1,6 @@
 const { text } = require('express')
 const asyncHandler = require('express-async-handler')
-const Trip = require('../models/tiketModel')
+const Trip = require('../models/tripModel')
 const User = require('../models/userModel')
  
 const getTrip = asyncHandler(async (req,res)=>{

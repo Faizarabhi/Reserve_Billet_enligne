@@ -32,5 +32,15 @@ const protect = asyncHandler(async (req, res, next) => {
     throw new Error('Not authorized, no token')
   }
 })
+// admin middlewar
+const isAdmin = (req, res, next)=>{
+  if(req.user.role === 0){
+    
+     
+    return next(new Error('Not Admin'),res.status(401))
+  }
+  next()
+}
 
-module.exports = { protect }
+
+module.exports = { protect, isAdmin }
