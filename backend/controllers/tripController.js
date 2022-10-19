@@ -28,11 +28,12 @@ const addTrip = asyncHandler(async (req,res)=>{
     // Departure_time: req.body.Departure_time,
     //         Arrival_time : req.body.Arrival_time,
     // $gte $lte
-    const interval = await Trip.find({$and : [{Departure_time : {$gte:req.body.Departure_time}},{Arrival_time : {$gte:req.body.Arrival_time}}]}).where({grandbus : {$eq : req.body.grandbus}})
+
+    const interval = await Trip.find({$or : [{Departure_time : {$gte:req.body.Departure_time}},{Arrival_time : {$lte:req.body.Arrival_time}}]}).where({grandbus : {$eq : req.body.grandbus}})
 
     //console.log(interval)
 
-   if(interval.length !=0){ 
+   if(interval.length != 0){ 
         res.status(400)
         throw new Error('Grand bus deja reserved')
     }
