@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node backend/server.js",
     "faiza": "nodemon backend/server.js",
-    "client":"",
+    "client":"npm start --prefix frontend"
   },
   "repository": {
     "type": "git",
