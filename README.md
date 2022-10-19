@@ -62,15 +62,3 @@ $ npm run dev // run it locally
 $ npm run build // this will build the server code to es5 js codes and generate a dist file
 ```
 
-## Deploy Server to [Heroku](https://dashboard.heroku.com/)
-```terminal
-$ npm i -g heroku
-$ heroku login
-...
-$ heroku create
-$ npm run heroku:add <your-super-amazing-heroku-app>
-// remember to run this command in the root level, not the server level, so if you follow the documentation along, you may need to do `cd ..`
-$ pwd
-/Users/<your-name>/mern
-$ npm run deploy:heroku
-```
