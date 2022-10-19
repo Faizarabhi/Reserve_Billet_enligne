@@ -14,8 +14,10 @@ const addTicket = asyncHandler(async (req,res)=>{
         throw new Error('Please a trip field')
     }
     const ticket = await Ticket.create(
-        {trip : req.body.trip,
-        user : req.user.id}
+        {
+        trip : req.body.trip,
+        user : req.user.id
+        }
     )
     res.status(200).json(ticket)
 })

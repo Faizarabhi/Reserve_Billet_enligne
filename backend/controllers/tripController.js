@@ -2,22 +2,57 @@ const { text } = require('express')
 const asyncHandler = require('express-async-handler')
 const Trip = require('../models/tripModel')
 const User = require('../models/userModel')
- 
+const Grandbus = require('../models/grandbusModel')
+const { findOne } = require('../models/tripModel')
+const city = require('../models/cityModel')
+
+ // trip with bus dispo or not
+ const getAllTrip = asyncHandler(async (req,res)=>{
+    const trips = await Trip.find()
+    res.status(200).json(trips)
+})
 const getTrip = asyncHandler(async (req,res)=>{
     const trips = await Trip.find({ user: req.user.id})
     res.status(200).json(trips)
 })
 
 const addTrip = asyncHandler(async (req,res)=>{
-    if(!req.body.trip){
+    if(!req.body){
         res.status(400)
         throw new Error('Please a trip field')
     }
-    const trip = await Trip.create(
-        {trip : req.body.trip,
-        user : req.user.id}
-    )
-    res.status(200).json(trip)
+    // if bus desponible
+    // linterval de temp  Departure_time
+    // const reservedtimedepart = await Trip.find({Departure_time : {$eq : req.body.Departure_time}}).where({grandbus : {$eq : req.body.grandbus}}).count()
+    // const reservedtime = await Trip.find({Arrival_time : {$eq : req.body.Arrival_time}}).where({grandbus : {$eq : req.body.grandbus}}).count()
+    // Departure_time: req.body.Departure_time,
+    //         Arrival_time : req.body.Arrival_time,
+    // $gte $lte
+    const interval = await Trip.find({$and : [{Departure_time : {$gte:req.body.Departure_time}},{Arrival_time : {$gte:req.body.Arrival_time}}]}).where({grandbus : {$eq : req.body.grandbus}})
+
+    //console.log(interval)
+
+   if(interval.length !=0){ 
+        res.status(400)
+        throw new Error('Grand bus deja reserved')
+    }
+    else{
+        const trip = await Trip.create(
+            {
+            trip : req.body.trip,
+            user : req.user.id,
+            grandbus : req.body.grandbus,
+            from : req.body.from,
+            to :req.body.to,
+            Departure_time: req.body.Departure_time,
+            Arrival_time : req.body.Arrival_time,
+            reserved_seats : req.body.reserved_seats,
+            price_trip : req.body.price_trip
+    
+        })
+        res.status(200).json(trip)}
+    
+   
 })
 
 const updateTrip = asyncHandler(async (req,res)=>{
@@ -62,4 +97,4 @@ const deleteTrip = asyncHandler(async (req,res)=>{
     res.status(200).json({id : req.params.id})
 })
 
-module.exports = {getTrip,addTrip,updateTrip,deleteTrip}
+module.exports = {getTrip,getAllTrip,addTrip,updateTrip,deleteTrip}

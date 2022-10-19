@@ -1,0 +1,11 @@
+  [
+    { "id":{"$oid" : "1"}, "name ": "Berkane"},
+    { "id" : {"$oid":"2"},"name ": "Oujda"},
+    { "id" : {"$oid":"3"},"name ": "Nador"},
+    { "id" : {"$oid":"4"},"name ": "El-Houssayma"},
+    { "id" : {"$oid":"5"},"name ": "Dakhla"},
+    { "id" : {"$oid":"6"},"name ": "Safi"},
+    { "id" : {"$oid":"7"},"name ": "Titouane"},
+    { "id" : {"$oid":"8"},"name ": "Tanger"}
+
+]

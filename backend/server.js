@@ -15,6 +15,7 @@ app.use(express.urlencoded({extended: false}))
 app.use('/api/tikets',require('./routes/tiketRoutes'))
 app.use('/api/users',require('./routes/userRoutes'))
 app.use('/api/trips',require('./routes/tripRoutes'))
+app.use('/api/grandbus',require('./routes/grandbusRoutes'))
 
 app.use(errorHandler)
 
