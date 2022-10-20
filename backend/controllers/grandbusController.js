@@ -10,10 +10,9 @@ const getGrandbus = asyncHandler(async (req,res)=>{
 })
 
 const addGrandbus = asyncHandler(async (req,res)=>{
-    if(!req.body){
-        res.status(400)
-        throw new Error('Please a grandbus field')
-    }
+    !req.body  
+    ? res.status(400) && Error('Please add grandbus field'): null ;
+    
     const grandbus = await Grandbus.create({
         registration_number : req.body.registration_number,
         seats_number : req.body.seats_number
@@ -23,10 +22,8 @@ const addGrandbus = asyncHandler(async (req,res)=>{
 
 const updateGrandbus = asyncHandler(async (req,res)=>{
     const grandbus = await Grandbus.findById(req.params.id)
-    if(!grandbus){
-        res.status(400)
-        throw new Error('grandbus Not found')
-    }
+    !grandbus? res.status(400) &&  Error('grandbus Not found'): null;
+    
     
     // Make sure the user is admin 
     

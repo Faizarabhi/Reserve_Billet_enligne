@@ -21,25 +21,13 @@ const addTrip = asyncHandler(async (req,res)=>{
         res.status(400)
         throw new Error('Please a trip field')
     }
-    // if bus desponible
-    // linterval de temp  Departure_time
-    // const reservedtimedepart = await Trip.find({Departure_time : {$eq : req.body.Departure_time}}).where({grandbus : {$eq : req.body.grandbus}}).count()
-    // const reservedtime = await Trip.find({Arrival_time : {$eq : req.body.Arrival_time}}).where({grandbus : {$eq : req.body.grandbus}}).count()
-    // Departure_time: req.body.Departure_time,
-    //         Arrival_time : req.body.Arrival_time,
-    // $gte $lte
+  
 
     const interval = await Trip.find({$or : [{Departure_time : {$gte:req.body.Departure_time}},{Arrival_time : {$lte:req.body.Arrival_time}}]}).where({grandbus : {$eq : req.body.grandbus}})
 
     //console.log(interval)
 
-   if(interval.length != 0){ 
-        res.status(400)
-        throw new Error('Grand bus deja reserved')
-    }
-    else{
-        const trip = await Trip.create(
-            {
+   interval.length != 0?  res.status(400)&& Error('Grand bus deja reserved') :  await Trip.create( {
             trip : req.body.trip,
             user : req.user.id,
             grandbus : req.body.grandbus,
@@ -48,10 +36,8 @@ const addTrip = asyncHandler(async (req,res)=>{
             Departure_time: req.body.Departure_time,
             Arrival_time : req.body.Arrival_time,
             reserved_seats : req.body.reserved_seats,
-            price_trip : req.body.price_trip
-    
-        })
-        res.status(200).json(trip)}
+            price_trip : req.body.price_trip})
+            res.status(200).json(trip)
     
    
 })
