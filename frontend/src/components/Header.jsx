@@ -1,29 +1,42 @@
-import { FaSignInAlt,  FaUser } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
+import { logout, reset} from '../features/auth/authSlice'
 
 function Header() {
-  
+  const btn = 'ml-8'
 
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const {user} = useSelector((state)=> state.auth)
+  const onLogout = ()=>{
+    dispatch(logout())
+    dispatch(reset())
+    navigate('/')
+  }
   return (
-    <header className='header'>
+    <header className='flex items-center justify-around p-4 '>
       <div className='logo'>
-        <Link to='/'>GoalSetter</Link>
+        <Link to='/'>TakeCar</Link>
       </div>
-      <ul>
-      
-          <>
-            <li>
+      <ul className='flex'>
+        {user ? (
+        <>
+          <button onClick={onLogout}>
+               Logout
+            </button>
+           </>
+           ): (<>
+            <li className={btn} >
               <Link to='/login'>
-                <FaSignInAlt /> Login
+                 Login
               </Link>
             </li>
-            <li>
+            <li className={btn} >
               <Link to='/register'>
-                <FaUser /> Register
+                Register
               </Link>
-            </li>
-          </>
+            </li></>)}
+          
         
       </ul>
     </header>

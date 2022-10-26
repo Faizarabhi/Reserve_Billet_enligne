@@ -1,7 +1,12 @@
-
+import Header from '../components/Header'
+import Reserve from '../components/Reserve'
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <>
+      <Header/>
+      <Reserve/>
+      
+    </>
   )
 }
 
