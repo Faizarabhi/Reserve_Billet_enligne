@@ -22,19 +22,33 @@ function Reserve() {
     const {from,to,datedep,datear} = formReserve
     const incrNumber = ()=>{
       setAd(ad+1)
-      
+      setFormReserve((prevState) => ({
+        ...prevState,
+        numad:ad+1,
+      }))
        }
     const decrNumber = ()=>{
-      setFormReserve({numad:ad})
-      // setAd(ad-1)
+      setAd(ad-1)
+      setFormReserve((prevState) => ({
+        ...prevState,
+        numad:ad-1,
+      }))
        }
       // const [numenf, setNumenf] = useState(1)
     
        const incrNumberenf = ()=>{
-        setEnf({numenf:enf+1})
+        setEnf(enf+1)
+         setFormReserve((prevState) => ({
+          ...prevState,
+          numenf:enf+1,
+        }))
           }
        const decrNumberenf = ()=>{
         setEnf(enf-1)
+        setFormReserve((prevState) => ({
+         ...prevState,
+         numenf:enf-1,
+       }))
           }
           const onChange = (e) => {
             setFormReserve((prevState) => ({
@@ -110,8 +124,7 @@ function Reserve() {
                 <input datepicker datepicker-buttons type="date" id='datear' value={datear} onChange={onChange} name='datear'  min="2022-10-26" />
                 
                 </div> 
-                
-                
+
     </div>
     <button className='hover:bg-[#264653df] hover:text-[#fff] bg-[#264653]   text-white font-semibold h-16 py-2 px-4 rounded'>search</button>
       </div>
