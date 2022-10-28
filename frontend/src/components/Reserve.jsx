@@ -1,12 +1,13 @@
 import {useState} from 'react'
 import bus from '../assets/bus.svg'
 import callendar from '../assets/callendar.svg'
+
 function Reserve() {
-    const reserve = 'relative flex p-8 m-8 h-44 rounded-lg bg-[#ae4b29] '
-    const inputStyle = 'border-b border-slate-300   pl-8 m-8 h-12 w-3/4 focus:outline-none  bg-[#ae4b29]'
-    const inputs ='flex mt-4' 
+    const reserve = 'relative flex p-8 m-8 h-44 rounded-lg bg-[#E76F51] bg-opacity-80 '
+    const inputStyle = 'border-b border-slate-300 rounded  pl-8 m-8 h-12 w-3/4 focus:outline-none  bg-[#E76F51]  bg-opacity-80'
+    const inputs ='flex mt-4 ' 
     const selects = 'absolute flex '
-    const select = 'focus:outline-none ml-4 z-50 w-max text-slate-300 text-sm rounded-lg bg-[#ae4b29] block w-full p-2.5'
+    const select = 'focus:outline-none ml-4 z-50 w-max text-slate-300 text-sm rounded-lg bg-[#E76F51] block w-full p-2.5'
     const btn = 'border rounded p-1 ml-4'
     const [display, setDisplay]= useState('hidden')
      const toggle = ()=>{
@@ -14,22 +15,26 @@ function Reserve() {
   }
   
     
-    // const [numad, setNum] = useState(1)
-    const [formReserve,setFormReserve] = useState({numad:1,numenf:0,from:'',to:'',datedep:'',datear:''})
-    const {numad,numenf,from,to,datedep,datear} = formReserve
+  const [ad,setAd] = useState(0)
+  const [enf,setEnf] = useState(0)
+ 
+    const [formReserve,setFormReserve] = useState({numad:1,numenf:1,from:'',to:'',datedep:'',datear:''})
+    const {from,to,datedep,datear} = formReserve
     const incrNumber = ()=>{
-      numad++
+      setAd(ad+1)
+      
        }
     const decrNumber = ()=>{
-      numad--
+      setFormReserve({numad:ad})
+      // setAd(ad-1)
        }
       // const [numenf, setNumenf] = useState(1)
     
        const incrNumberenf = ()=>{
-       
+        setEnf({numenf:enf+1})
           }
        const decrNumberenf = ()=>{
-        
+        setEnf(enf-1)
           }
           const onChange = (e) => {
             setFormReserve((prevState) => ({
@@ -47,7 +52,7 @@ function Reserve() {
     <>
     
     <form onSubmit={onSubmit}>
-    <div className={reserve}>
+    <div className={reserve}  >
     <div className={selects}>
 <select id="countries" className={select}>
   <option selected>Round Trip</option>
@@ -57,20 +62,20 @@ function Reserve() {
 <div className={select}>
   <option onClick={toggle} selected>Nombre de personne</option>
     <div  className={display}>
-  <div className="bg-white absolute text-gray-500 w-full rounded p-2">
-      <div onChange={onChange} name='adulte' className='mt-3' value={numad}>
-    <span className='mr-4'>{numad}</span>
+  <div className="bg-white absolute text-white w-full rounded p-2 h-44 bg-[#264653df]">
+      <div onChange={onChange}  className='mt-3' value={ad}>
+    <span className='mr-4'>{ad}</span>
       Adultes
       <button onClick={decrNumber} type="button" className={btn}><span className='text-blue-500'>-</span></button>
-      <span className='ml-4'>{numad}</span>
+      <span className='ml-4'>{ad}</span>
       <button onClick={incrNumber} type="button" className={btn}><span className='text-blue-500'>+</span></button>
       </div>
 
-      <div onChange={onChange} name='enfant' className='mt-3' value={numenf}>
-    <span className='mr-4'>{numenf}</span>
+      <div onChange={onChange} className='mt-3' value={enf}>
+    <span className='mr-4'>{enf}</span>
       Enfants
       <button onClick={decrNumberenf} type="button" className={btn}><span className='text-blue-500'>-</span></button>
-      <span className='ml-4'>{numenf}</span>
+      <span className='ml-4'>{enf}</span>
       <button onClick={incrNumberenf} type="button" className={btn}><span className='text-blue-500'>+</span></button>
       </div>
 
@@ -94,7 +99,7 @@ function Reserve() {
                 <label htmlFor='dateDep'>
                 <img   className='w-8 h-8 absolute top-10 left-8' src={callendar}/>
                 </label>
-                <input type="date"  id='dateDep' value={datedep} onChange={onChange} name='datedep' />
+                <input type="date"  id='dateDep' value={datedep} onChange={onChange} name='datedep' min="2022-10-26"  />
                 </div> 
       </div>
       <div className="relative h-4 ">
@@ -102,12 +107,15 @@ function Reserve() {
                 <label htmlFor='datear'>
                 <img   className='w-8 h-8 absolute top-10 left-8' src={callendar}/>
                 </label>
-                <input type="date" id='datear' value={datear} onChange={onChange} name='datear' />
+                <input datepicker datepicker-buttons type="date" id='datear' value={datear} onChange={onChange} name='datear'  min="2022-10-26" />
+                
                 </div> 
+                
+                
     </div>
+    <button className='hover:bg-[#264653df] hover:text-[#fff] bg-[#264653]   text-white font-semibold h-16 py-2 px-4 rounded'>search</button>
       </div>
     </div>
-    <button >bb</button>
     </form>
     </>
   )
