@@ -15,7 +15,7 @@ function Reserve() {
   }
   
     
-  const [ad,setAd] = useState(0)
+  const [ad,setAd] = useState(1)
   const [enf,setEnf] = useState(0)
  
     const [formReserve,setFormReserve] = useState({numad:1,numenf:1,from:'',to:'',datedep:'',datear:''})
@@ -28,12 +28,14 @@ function Reserve() {
       }))
        }
     const decrNumber = ()=>{
+      if( ad > 1 ){
       setAd(ad-1)
       setFormReserve((prevState) => ({
         ...prevState,
         numad:ad-1,
       }))
        }
+      }
       // const [numenf, setNumenf] = useState(1)
     
        const incrNumberenf = ()=>{
@@ -44,12 +46,13 @@ function Reserve() {
         }))
           }
        const decrNumberenf = ()=>{
+        if( enf > 0){
         setEnf(enf-1)
         setFormReserve((prevState) => ({
          ...prevState,
          numenf:enf-1,
        }))
-          }
+          }}
           const onChange = (e) => {
             setFormReserve((prevState) => ({
               ...prevState,
