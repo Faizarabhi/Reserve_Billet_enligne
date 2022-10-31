@@ -15,7 +15,7 @@ function Login() {
   })
   const inputStyle = "border-b border-slate-300  p-4 mb-8 h-12 w-3/4 ";
   const { email, password } = formData
-
+ 
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -52,6 +52,7 @@ function Login() {
 
     dispatch(login(userData))
   }
+
 
   if (isLoading) {
     return <Spinner />

@@ -7,7 +7,7 @@ const tripSchema = mongoose.Schema({
         },
         grandbus : {
             type : mongoose.Schema.Types.ObjectId,
-            required : true,
+            required : false,
             ref : 'Grandbus'
         },
         trip :{
@@ -32,7 +32,7 @@ const tripSchema = mongoose.Schema({
         },
         reserved_seats :{
             type : Array,
-            require : [true, 'Please add reserved seats']
+            require : [false, 'Please add reserved seats']
         },
         price_trip : {
             type : Number,

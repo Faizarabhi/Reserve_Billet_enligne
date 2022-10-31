@@ -21,7 +21,8 @@ function Header() {
       <ul className='flex'>
         {user ? (
         <>
-          <button onClick={onLogout} >
+        <h1 className=''>{user && user.name} </h1>
+          <button onClick={onLogout} className='hover:bg-[#E76F51] hover:text-white hover:border-[#E76F51] border-2  border-[#264653]   text-[#264653] font-semibold h-16 py-2 px-4 rounded-lg'>
                Logout
             </button>
            </>
