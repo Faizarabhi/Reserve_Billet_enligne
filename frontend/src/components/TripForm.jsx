@@ -28,7 +28,7 @@ function TripForm() {
       <div className="shadow sm:rounded-md sm:overflow-hidden">
         <div className="bg-white py-6 px-4 space-y-6 sm:p-6">
           <div>
-            <h3 className="text-lg leading-6 font-medium text-gray-900">Personal Information</h3>
+            <h3 className="text-lg leading-6 font-medium text-gray-900">Reservation Enligne Trip</h3>
             <p className="mt-1 text-sm text-gray-500">Use a permanent address where you can recieve mail.</p>
           </div>
           <div className="col-span-6 sm:col-span-3">
