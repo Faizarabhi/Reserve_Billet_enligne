@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = '/api/trips'
+const API_URL = '/api/trips/'
 
 // Create new trip
 const createTrip = async (tripData, token) => {

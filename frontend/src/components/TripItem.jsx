@@ -10,19 +10,7 @@ function TripItem({ trip }) {
   const dispatch = useDispatch()
 
   return (
-    // <div className='trip'>
-    //   <div>{trip.price_trip}</div>
-    //   <div>{trip.Arrival_time}</div>
-    //   <div>{trip.price_trip}</div>
-    //   <div>{trip.to}</div>
-    //   <div>{trip.trip}</div>
-    //   <div>{trip.from}</div>
-    //   <div>{new Date(trip.createdAt).toLocaleString('en-US')}</div>
-    //   <h2>{trip.text}</h2>
-    //   <button onClick={() => dispatch(deleteTrip(trip._id))} className='close'>
-    //     X
-    //   </button>
-    // </div>
+
     <div className="bg-blue-200 rounded-lg px-4 py-5 m-4 sm:px-6">
       <div className="flex space-x-3">
         <div className="flex-shrink-0">
@@ -71,13 +59,13 @@ function TripItem({ trip }) {
                   <Menu.Item>
                     {({ active }) => (
                       <a
-                        href="#"
+                        onClick={()=>{ dispatch(deleteTrip(trip._id))}}
                         className={classNames(
                           active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                           'flex px-4 py-2 text-sm'
                         )}
                       >
-                        <span>Add to favorites</span>
+                        <span>Delete</span>
                       </a>
                     )}
                   </Menu.Item>
@@ -90,7 +78,7 @@ function TripItem({ trip }) {
                           'flex px-4 py-2 text-sm'
                         )}
                       >
-                        <span>Embed</span>
+                        <span>Update</span>
                       </a>
                     )}
                   </Menu.Item>

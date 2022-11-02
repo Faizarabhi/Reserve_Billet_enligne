@@ -21,13 +21,13 @@ function Login() {
   // if(userlog) {
   //   navigate('/')
   // }
-  useEffect(() => {
-    
-    const userlog = localStorage.getItem('user')
-    if (!userlog) {
-      navigate('/')
-    }
-  }, [])
+useEffect(() => {
+  
+  const userlog = localStorage.getItem('user')
+  if (userlog) {
+    navigate('/')
+  }
+}, [])
   const inputStyle = "border-b border-slate-300  p-4 mb-8 h-12 w-3/4 ";
   const { email, password } = formData
  

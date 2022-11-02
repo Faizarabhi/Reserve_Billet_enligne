@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Faizarabhi/Reserve_Billet_enligne#readme",
   "dependencies": {
+    "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^2.0.12",
     "@heroicons/vue": "^2.0.12",
     "@iconify/icons-heroicons-solid": "^1.2.5",
