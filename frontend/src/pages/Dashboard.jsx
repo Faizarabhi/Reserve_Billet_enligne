@@ -9,21 +9,22 @@ import TripForm from '../components/TripForm'
 import Spinner from '../components/Spinner'
 import {getTrips,reset} from '../features/trip/tripSlice'
 import TripItem from '../components/TripItem'
+import aside from '../components/aside'
 
 function Dashboard() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const { user } = useSelector((state) => state.auth)
+  //const { user } = useSelector((state) => state.auth)
   const { trips, isLoading, isError, message } = useSelector(
     (state) => state.trips
   )
-
+  
+  const user = localStorage.getItem('user')
   useEffect(() => {
-    if (isError) {
-      console.log(message)
-    }
-
+    // if (isError) {
+    //   console.log(message)
+    // }
     if (!user) {
       navigate('/login')
     }
@@ -55,12 +56,12 @@ function Dashboard() {
     <>
     <section className='heading'>
      
-      <p>Goals Dashboard</p>
+      <p>Trip Dashboard</p>
     </section>
 
     {/* <TripForm /> */}
-
     <section className='content'>
+<aside/>
       {trips.length > 0 ? (
         <div className='flex flex-wrap justify-center '>
           {trips.map((trip) => (

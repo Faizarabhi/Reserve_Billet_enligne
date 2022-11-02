@@ -8,16 +8,30 @@ import Spinner from '../components/Spinner'
 import { Link} from 'react-router-dom'
 import img from '../assets/bus.jpg'
 
+
 function Login() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [formData, setFormData] = useState({
     email: '',
-    password: '',
+    password: '', 
   })
+  // useEffect() =
+  // const userlog = localStorage.getItem('user')
+  // if(userlog) {
+  //   navigate('/')
+  // }
+  useEffect(() => {
+    
+    const userlog = localStorage.getItem('user')
+    if (!userlog) {
+      navigate('/')
+    }
+  }, [])
   const inputStyle = "border-b border-slate-300  p-4 mb-8 h-12 w-3/4 ";
   const { email, password } = formData
  
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
