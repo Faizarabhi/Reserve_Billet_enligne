@@ -1,14 +1,33 @@
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { deleteTrip } from '../features/trip/tripSlice'
 import { Fragment } from 'react'
+import { useSelector } from 'react-redux'
+import {getTrips,reset} from '../features/trip/tripSlice'
 import { Menu, Transition } from '@headlessui/react'
+import { useNavigate } from 'react-router-dom'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
-function TripItem({ trip }) {
+  
+function TripItem() {
   const dispatch = useDispatch()
+  const navigate= useNavigate()
+  const { trip} = useSelector(
+    (state) => state.trips
+  )
+  const user = localStorage.getItem('user')
+  useEffect(() => {
+    
 
+
+     dispatch(getTrips())
+
+    return () => {
+      dispatch(reset())
+    }
+  }, [user, navigate,dispatch])
   return (
 
     <div className="bg-blue-200 rounded-lg px-4 py-5 m-4 sm:px-6">

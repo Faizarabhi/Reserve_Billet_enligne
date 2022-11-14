@@ -2,6 +2,7 @@
 import {useState} from 'react'
 import {useDispatch} from 'react-redux'
 import {createTrip} from '../features/trip/tripSlice'
+
 function TripForm() {
     const [from,setFrom] = useState('')
     const [to,setTo] = useState('')
