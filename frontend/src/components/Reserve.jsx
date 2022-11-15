@@ -13,7 +13,7 @@ function Reserve() {
   const inputs = "flex mt-4 ";
   const selects = "absolute flex ";
   const select =
-    "focus:outline-none ml-4 z-50 w-max text-slate-300 text-sm rounded-lg bg-[#E76F51] block w-full p-2.5";
+    "focus:outline-none ml-4 z-50 w-max text-white text-sm rounded-lg bg-[#E76F51] block w-full p-2.5";
   const btn = "border rounded p-1 ml-4";
   const [display, setDisplay] = useState("hidden");
   const toggle = () => {
@@ -194,10 +194,12 @@ function Reserve() {
                 />
               </div>
             </div>
-            <button className="hover:bg-[#264653df] hover:text-[#fff] bg-[#264653]   text-white font-semibold h-16 py-2 px-4 rounded">
+          </div>
+            <div className=" mt-12">
+            <button className="btn">
               search
             </button>
-          </div>
+            </div>
         </div>
       </form>
     </>
