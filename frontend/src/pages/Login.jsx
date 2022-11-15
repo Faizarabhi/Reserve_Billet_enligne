@@ -32,7 +32,6 @@ useEffect(() => {
   const { email, password } = formData
  
   
-
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   )

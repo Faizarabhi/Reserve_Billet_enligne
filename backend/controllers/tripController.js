@@ -7,15 +7,34 @@ const { findOne } = require('../models/tripModel')
 const city = require('../models/cityModel')
 
  // trip with bus dispo or not
+ 
  const getAllTrip = asyncHandler(async (req,res)=>{
     const trips = await Trip.find()
     res.status(200).json(trips)
 })
+// get trip by id
+const getoneTrip = asyncHandler(async (req,res)=>{
+    const trips = await Trip.findById({_id : req.body._id})
+    res.status(200).json(trips)
+})
+// get all trip by user id
 const getTrip = asyncHandler(async (req,res)=>{
     const trips = await Trip.find({ user: req.user.id})
     res.status(200).json(trips)
 })
-
+const searchTrip = asyncHandler(async (req,res)=>{
+    // find by datear,datedep,from,numad,numenf,to
+    const {datear,datedep,from,to}= req.body
+    
+    const trips = await Trip.find({
+        datear,
+        datedep,
+        from,
+        to
+    })
+       
+    res.status(200).json(trips)
+})
 const addTrip = asyncHandler(async (req,res)=>{
     if(!req.body){
 
@@ -87,4 +106,4 @@ const deleteTrip = asyncHandler(async (req,res)=>{
     res.status(200).json({id : req.params.id})
 })
 
-module.exports = {getTrip,getAllTrip,addTrip,updateTrip,deleteTrip}
+module.exports = {getTrip,getAllTrip,addTrip,updateTrip,deleteTrip,searchTrip,getoneTrip}

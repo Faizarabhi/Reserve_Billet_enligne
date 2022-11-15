@@ -10,6 +10,7 @@ const initialState = {
 }
 
 // Create new trip
+
 export const createTrip = createAsyncThunk(
   'trips/create',
   async (tripData, thunkAPI) => {
@@ -28,6 +29,25 @@ export const createTrip = createAsyncThunk(
   }
 )
 
+// Get Trips by condition
+export const searchTrip = createAsyncThunk(
+  'trips/search',
+  async(_,thunkAPI)=>{
+    try{
+      // erquest
+      const token = thunkAPI.getState().auth.user.token
+      return await tripService.getTrips(token)
+    }catch(error){
+      const message =
+      (error.response &&
+        error.response.data &&
+        error.response.data.message) ||
+      error.message ||
+      error.toString()
+    return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
 // Get user trips
 export const getTrips = createAsyncThunk(
   'trips/getAll',
@@ -46,10 +66,27 @@ export const getTrips = createAsyncThunk(
     }
   }
 )
-
+// Update Trip
+export const updateTrip = createAsyncThunk(
+  'trips/update',
+  async (id, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token
+      return await tripService.updateTrip(id, token)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
 // Delete user trip
 export const deleteTrip = createAsyncThunk(
-  'goals/delete',
+  'trips/delete',
   async (id, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
@@ -96,6 +133,21 @@ export const tripSlice = createSlice({
         state.trips = action.payload
       })
       .addCase(getTrips.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
+      .addCase(updateTrip.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(updateTrip.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.trips = state.trips.filter(
+          (trip) => trip._id !== action.payload.id
+        )
+      })
+      .addCase(updateTrip.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload

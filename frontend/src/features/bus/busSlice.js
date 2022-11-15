@@ -49,7 +49,7 @@ export const getGrandbus = createAsyncThunk(
 
 // Delete user grandbus
 export const deleteGrandbus = createAsyncThunk(
-  'goals/delete',
+  'trips/delete',
   async (id, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
