@@ -12,6 +12,9 @@ import TripItem from "../components/TripItem";
 import Service from "../components/Service";
 
 function Dashboard() {
+  const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')):'';
+  
+
   return (
     <>
       <div className="flex flex-col justify-center  aligne-center">
@@ -19,8 +22,9 @@ function Dashboard() {
         <div className="absolute sm:top-20 md:top-2/4 right-[12rem]  ">
           <Reserve />
         </div>
+       
         <div className="flex justify-center items-center m-8">
-        <ul className="menu bg-base-100 w-56 rounded-box">
+        {user.user===1 ? ( <ul className="menu bg-base-100 w-56 rounded-box">
           <li>
             <label htmlFor="my-modal-3" className="btn bg-[#ae4b29] text-white">
               Create Trip
@@ -34,7 +38,7 @@ function Dashboard() {
             </a>
           </li>
          
-        </ul>
+        </ul>): ''}
       </div>
         {/* Create */}
         <input type="checkbox" id="my-modal-3" className="modal-toggle" />

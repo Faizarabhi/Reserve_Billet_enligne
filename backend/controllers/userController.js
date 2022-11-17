@@ -40,18 +40,16 @@
     res.json({message: 'register User'})
  })
  const loginUser = asyncHandler(async (req, res) => {
-    const { email, password } = req.body
+    const  email= req.body.email
+    const password = req.body.password
   
     // Check for user email
     const user = await User.findOne({ email })
-  
+
     if (user && (await bcrypt.compare(password, user.password))) {
       res.json({
-        _id: user.id,
-        name: user.fullname,
-        email: user.email,
+        user:user.role,
         token: generateToken(user._id),
-        
       })
     } else {
       res.status(400)

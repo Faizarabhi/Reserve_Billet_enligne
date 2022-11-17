@@ -24,11 +24,10 @@ const getTrip = asyncHandler(async (req,res)=>{
 })
 const searchTrip = asyncHandler(async (req,res)=>{
     // find by datear,datedep,from,numad,numenf,to
-    const {datear,datedep,from,to}= req.body
+    const {from,to}= req.body
     
     const trips = await Trip.find({
-        datear,
-        datedep,
+       
         from,
         to
     })

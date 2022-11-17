@@ -17,7 +17,7 @@ function TripForm() {
     //const {from,to, Departure_time, Arrival_time, price_trip} = formData;
 
     const onSubmit = e =>{
-        e.preventDefault()
+        // e.preventDefault()
         const formData = {
           from :from,
           to : to,

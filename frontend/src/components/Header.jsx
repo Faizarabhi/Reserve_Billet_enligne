@@ -16,7 +16,7 @@ function Header() {
   }
   return (
     
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 px-12">
     <div className="flex-1">
       <a href="/">
       <img src={logo}/></a>

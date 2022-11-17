@@ -6,7 +6,7 @@ import granbusReducer from '../features/bus/busSlice';
 
 export const store = configureStore({
   reducer: {
-  auth: authReducer,
+    auth: authReducer,
     trips : tripReducer,
     grandbus : granbusReducer
   },

@@ -53,7 +53,7 @@ function TripItem() {
       </div>
       <div className="stat">
         <div className="stat-title">Price</div>
-        <div className="stat-value">$18.00</div>
+        <div className="stat-value">${trip.price_trip}.00</div>
         <div className="stat-actions">
           <div className="btn btn-sm">Time :6 h 5 min</div>
           <div className="btn btn-sm">Time :8 h 5 min</div>
@@ -112,7 +112,7 @@ function TripItem() {
                               "flex px-4 py-2 text-sm"
                             )}
                           >
-                        <span>Update</span>
+                        {/* <span>Update</span> */}
                           </div>
                           </label>
                         )}

@@ -4,6 +4,7 @@ import callendar from "../assets/callendar.svg";
 import { useDispatch } from "react-redux";
 import { searchTrip } from "../features/trip/tripSlice";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 function Reserve() {
   const navigate = useNavigate();
   const reserve =
@@ -24,14 +25,12 @@ function Reserve() {
   const [enf, setEnf] = useState(0);
 
   const [formReserve, setFormReserve] = useState({
-    numad: 1,
-    numenf: 1,
+    
     from: "",
     to: "",
-    datedep: "",
-    datear: "",
+   
   });
-  const { from, to, datedep, datear } = formReserve;
+  const { from, to } = formReserve;
   const incrNumber = () => {
     setAd(ad + 1);
     setFormReserve((prevState) => ({
@@ -49,6 +48,7 @@ function Reserve() {
     }
   };
   // const [numenf, setNumenf] = useState(1)
+  
 
   const incrNumberenf = () => {
     setEnf(enf + 1);
@@ -72,10 +72,13 @@ function Reserve() {
       [e.target.name]: e.target.value,
     }));
   };
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     navigate('/tripSearch')
     console.log(formReserve);
+    localStorage.setItem("data",JSON.stringify(formReserve))
+    const res = await axios.post("http://localhost:8000/api/trips/search",formReserve)   
+    console.log(res.data)
   };
   return (
     <>
@@ -154,7 +157,7 @@ function Reserve() {
               />
               <img className="w-8 h-8 absolute top-10 left-8" src={bus} />
             </div>
-            <div className="relative h-4  w-3/4">
+            {/* <div className="relative h-4  w-3/4">
               <div className={inputStyle}>
                 <label htmlFor="dateDep">
                   <img
@@ -172,8 +175,8 @@ function Reserve() {
                   min="2022-10-26"
                 />
               </div>
-            </div>
-            <div className="relative h-4  w-3/4">
+            </div> */}
+            {/* <div className="relative h-4  w-3/4">
               <div className={inputStyle}>
                 <label htmlFor="datear">
                   <img
@@ -193,7 +196,7 @@ function Reserve() {
                   className="hidden "
                 />
               </div>
-            </div>
+            </div> */}
           </div>
             <div className=" mt-12">
             <button className="btn">
